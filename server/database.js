@@ -1,9 +1,24 @@
 const Database = require('better-sqlite3');
 const { v4: uuidv4 } = require('uuid');
+const path = require('path');
+const fs = require('fs');
 
 class TimelineDatabase {
   constructor() {
-    this.db = new Database('timeline.db');
+    // Use persistent storage path in production, local path in development
+    const dbPath = process.env.NODE_ENV === 'production' 
+      ? '/data/timeline.db' 
+      : 'timeline.db';
+    
+    // Ensure directory exists in production
+    if (process.env.NODE_ENV === 'production') {
+      const dbDir = path.dirname(dbPath);
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
+    }
+    
+    this.db = new Database(dbPath);
     this.init();
   }
 
