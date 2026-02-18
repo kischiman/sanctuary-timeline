@@ -67,7 +67,7 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
     <div className="h-screen flex flex-col bg-white">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200 p-4">
-        <h1 className="text-2xl font-bold text-gray-900">Residency Timeline</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Timeline</h1>
       </div>
 
       {/* Timeline Grid */}
